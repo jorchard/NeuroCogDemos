@@ -1,0 +1,291 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage[noend]{algpseudocode}
+\usepackage{hyperref}
+\usefonttheme{serif}
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+
+\title[DQN]{Introduction to Deep Q-Learning}
+\author[Van de Kleut]{
+  Alexander Van de Kleut\inst{1}
+}
+\institute[UW]{\inst{1}
+  \inst{1}
+  NeuroCog Lab
+  Cheriton School of Computer Science
+  University of Waterloo\\
+}
+\date[W20]{IEEE Control Systems Magazine, 2002}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Markov Decision Process}
+\begin{frame}
+  \frametitle{The Reward Hypothesis}
+  All of reinforcement learning is based on the idea that:
+  \begin{block}{Reward Hypothesis}
+    Every action of a rational agent can be thought of as seeking to maximize some cumulative scalar reward signal
+  \end{block}
+  We formalize this idea using a \textbf{Markov Decision Process}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Markov Process}
+  \begin{itemize}
+    \item A \textbf{Markov process} is formally a tuple $\langle \mathcal{S}, \mathcal{P} \rangle$
+    \item $\mathcal{S}$ is a set of states
+    \item $\mathcal{P}: \mathcal{S}^2 \to \left[ 0, 1 \right]$ is a transition probability distribution
+    \begin{itemize}
+      \item $$\mathcal{P}(s, s') = \mathbb{P} \left[ s' \vert s \right]$$ the probability of transitioning to state $s'$ given the current state $s$
+    \end{itemize}
+    \item Markov processes are used model stochastic sequences of states $s_1, s_2, \dots, s_T$ satisfying the \textbf{Markov property}:
+    \begin{itemize}
+      \item $$\mathbb{P} \left[ s_{t+1} \vert s_1, s_2, \dots, s_t \right] = \mathbb{P} \left[ s_{t+1} \vert s_t \right]$$ the probability of transitioning from state $s_t$ to state $s_{t+1}$ is independent of previous transitions.
+    \end{itemize}
+    \item We can generate \textbf{trajectories} of states using $\mathcal{P}$ of the form $\langle s_1, s_2, \dots, s_T \rangle$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Markov Reward Process}
+  \begin{itemize}
+    \item A \textbf{Markov reward process} is formally a tuple $\langle \mathcal{S}, \mathcal{P}, \mathcal{R} \rangle$ that allows us to associate with each state transition $\langle s_t, s_{t+1} \rangle$ some reward.
+    \item $$\mathcal{R}(s_t, s_{t+1}) = \mathbb{E} \left[r_t \vert s_t, s_{t+1} \right]$$ where $r_t$ is the ``instantaneous reward''
+    \item We often simplify this to $\mathcal{R}(s_t)$ the reward of being in a particular state $s_t$
+    \item Given a trajectory beginning at time step $t$ $\langle s_t, s_{t+1}, \dots, s_T \rangle$ there is an associated sequence of rewards $\langle r_t, r_{t+1}, \dots, r_T \rangle$
+    \item According to the reward hypothesis, we are interested in trajectories of states that maximize the \textbf{return} $R_t$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Return and Discounted Return}
+  \begin{itemize}
+    \item The \textbf{return} $R_t$ is just the cumulative rewards along a trajectory beginning at time stept $t$
+    \item $$R_t = \sum_{k=t}^T r_k$$
+    \item For finite $T$, we say the trajectory has a \textbf{finite time horizon} and is \textbf{episodic}
+    \item For infinite $T$ (trajectories are never-ending) we say the trajectory has an \textbf{infinite time horizon}
+    \item In this case, $R_t$ might not converge
+    \item Instead we use the \textbf{discounted return} $G_t$
+    \item $$G_t = \sum_{k=t}^T \gamma^{k-t}r_k$$
+    \item where $\gamma$ is a discount factor between $0$ and $1$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Markov Decision Process}
+  \begin{itemize}
+    \item A \textbf{Markov decision process} (MDP) extends Markov reward processes to make state transitions conditional on some action $a_t$
+    \item Formally a tuple $\langle \mathcal{S}, \mathcal{P}, \mathcal{R}, \mathcal{A} \rangle$
+    \item $\mathcal{A}$ is a set of actions available to the agent
+    \item State transitions are now $$\mathcal{P}(s_t, a_t, s_{t+1}) = \mathbb{P} \left[ s_{t+1} \vert s_t, a_t \right]$$
+    \item The probability of transitioning from state $s_t$ to state $s_{t+1}$ after choosing action $a_t$
+    \item Rewards are now
+    $$\mathcal{R}(s_t, a_t) = \mathbb{E} \left[ r_t \vert s_t, a_t \right]$$
+    \item The reward depends on the state you're in \textbf{and} the action you choose
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Value Function}
+  \begin{itemize}
+    \item We can use the expected value of $G_t$ to determine the \textbf{value} of being in a state $s_t$
+    \item $$V(s_t) = \mathbb{E} \left[ G_t \vert s_t \right]$$
+    \item We can decompose $V(s_t)$ into two parts: the immediate reward $r_t$ and the discounted value of being in the next state $s_{t+1}$
+    \item \begin{align*}
+          V(s_t) &= \mathbb{E} \left[ G_t \vert s_t \right] \\
+           &= \mathbb{E} \left[ r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \dots \vert s_t \right] \\
+           &= \mathbb{E} \left[ r_t + \gamma( r_{t+1} + \gamma r_{t+2} + \dots ) \vert s_t \right] \\
+           &= \mathbb{E} \left[ r_t + \gamma G_{t+1} \vert s_t \right] \\
+          V(s_t) &= \mathbb{E} \left[ r_t + \gamma V(s_{t+1}) \vert s_t \right]
+        \end{align*}
+          which is known as the \textbf{Bellman Equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Action-Value Function}
+  \begin{itemize}
+    \item We can also use the expected value of $G_t$ to determine the \textbf{quality} of taking a certain action $a_t$ in a state $s_t$
+    \item $$Q(s_t, a_t) = \mathbb{E} \left[ G_t \vert s_t, a_t \right]$$
+    \item We can decompose $Q(s_t, a_t)$ the same way as $V(s_t)$ using the Bellman equation:
+    $$Q(s_t, a_t) = \mathbb{E} \left[ r_t + \gamma Q(s_{t+1}, a_{t+1}) \vert s_t, a_t \right]$$
+    \item Then we can see that $$V(s_t) = \mathbb{E}_{a_t} \left[ Q(s_t, a_t) \right]$$ the value of being in state $s_t$ is just the expected quality of being in state $s_t$ over all actions $a_t$
+  \end{itemize}
+\end{frame}
+
+\section{Q-Learning}
+\begin{frame}
+  \frametitle{Policies}
+  \begin{itemize}
+    \item We want to design an agent capable of maximizing the return in a Markov decision process
+    \item We therefore need a method of selecting actions $a_t$ at each timestep $t$
+    \item We call this the \textbf{policy} of the agent
+    \item Policies can be \textbf{deterministic}, so that the action taken is a function of the current state: $$\mu: \mathcal{S} \to \mathcal{A}$$ with $a_t = \mu(s_t)$
+    \item or can be \textbf{stochastic}, where the action is samples from a probability distriution: $$\pi: \mathcal{S} \times \mathcal{A} \to \left[ 0, 1 \right]$$ with $a_t \sim \pi(\cdot \vert s_t)$
+    \item In general we can refer to policies as $\pi$ since $\mu$ is a special case of a stochastic policy
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Policies}
+  \begin{itemize}
+    \item Given a policy $\pi$ we define
+    \item $$V^\pi (s_t) = \mathbb{E}_\pi \left[ G_t \vert s_t \right]$$
+    \item $$Q^\pi (s_t, a_t) = \mathbb{E}_\pi \left[ G_t \vert s_t, a_t \right]$$
+    \item Where the superscript $\pi$ in $V^\pi(s_t)$ and $Q^\pi(s_t, a_t)$ as well as the subscript $\pi$ in the expectations simply means ``assuming subsequent actions are chosen according to a policy $\pi$''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Optimal Policy}
+  \begin{itemize}
+    \item What does it mean for an agent to have an \textbf{optimal policy} $\pi^*$?
+    \item If $Q^*$ is the best possible $Q$-value achievable by a policy $\pi$ then: $$Q^*(s_t, a_t) = \max_{\pi} \mathbb{E}_\pi \left[ G_t \vert s_t, a_t \right]$$
+    \item Then the optimal policy is just
+    $$\pi^* (a_t \vert s_t) = \begin{cases} 1 & a_t = \arg \max_{a_t} Q^*(a_t, s_t)\\ 0 & \text{otherwise} \end{cases}$$
+    i.e., choose the action which maximizes the optimal $Q$-value
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Learning Optimal Policies}
+  \begin{itemize}
+    \item In order to learn the optimal policy $\pi^*$ we need to learn $Q^\pi$, so we can choose the actions that maximize it
+    \item However, determining $Q^\pi$ exactly is often impossible in practice
+    \item How would you compute the expected value of being in a certain state at a certain time?
+    \item Reinforcement learning does not assume that you have access to the underlying MDP transition dynamics $\mathcal{P}$
+    \item Different approaches have been used to learn $Q^\pi$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$Q$-Learning}
+  \begin{itemize}
+    \item One approach is to try to use \textbf{dynamic programming} to learn $Q^\pi$
+    \item Assumes that $\mathcal{A}$ and $\mathcal{S}$ are \textbf{finite}
+    \item Begin with an approximation $\widehat{Q}^\pi$ which is successively improved to approach $Q^\pi$ in the limit
+    \item Assume that $\mathcal{S}$ and $\mathcal{A}$ are finite
+    \item Then we can use dynamic programming to approximate $Q^\pi$
+    \item Create a table of size $\lvert \mathcal{S} \rvert \times \lvert \mathcal{A} \rvert$
+    \item Store estimates $\widehat{Q}^\pi(s_t, a_t)$ for each pair $(s_t, a_t)$ in the table
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$Q$-Learning}
+  \begin{itemize}
+    \item Consider the following agent following a greedy policy $\pi$
+    \begin{enumerate}
+      \item You are in a state $s_t$
+      \item You choose an action $a_t$ which maximizes $\widehat{Q}^\pi(s_t, a_t)$ (greedy policy)
+      \item You get a reward $r_t$
+      \item You transition to the next state $s_{t+1}$
+    \end{enumerate}
+    \item At this point, you have a slightly better estimate for $Q^\pi(s_t, a_t)$ according to the Bellman equation, namely $$r_t + \gamma \max_{a_{t+1}} \widehat{Q}^\pi (s_{t+1}, a_{t+1})$$ (since we are following a greedy policy)
+    \item Update the table to be closer to the better estimate with some learning rate $\alpha$ $$\widehat{Q}^\pi(s_t, a_t) \gets (1 - \alpha) \widehat{Q}^\pi (s_t, a_t) + \alpha \left( r_t + \gamma \max_{a_{t+1}} \widehat{Q}^\pi (s_{t+1}, a_{t+1}) \right) $$
+  \end{itemize}
+\end{frame}
+
+\section{Deep Q-Learning}
+
+\begin{frame}
+  \frametitle{Deep $Q$-Learning}
+  \begin{itemize}
+    \item The issue with $Q$-learning is that it assumes that both $\mathcal{S}$ and $\mathcal{A}$ are finite
+    \item We can apply the methods of $Q$-learning to MDPs with infinite $\mathcal{S}$ by using function approximation
+    \item Instead of a table, $\widehat{Q}_{\theta}^\pi$ is a function approximator (such as a neural network) with parameters $\theta$
+    \item Given a state-action pair $(s_t, a_t)$ our function approximator makes a prediction $\widehat{Q}_{\theta}^\pi(s_t, a_t)$
+    \item We have a target $$y = r_t + \gamma \max_{a_{t+1}} \widehat{Q}_{\theta}^\pi (s_{t+1}, a_{t+1})$$
+    \item We want minimize the loss (e.g. via SGD)
+    $$L(\theta) = \left( \widehat{Q}_{\theta}^\pi(s_t, a_t) - y \right)^2$$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Target Networks}
+  \begin{itemize}
+    \item Generally in an MDP, two consecutive states $s_t$ and $s_{t+1}$ are similar
+    \item If our function approximator is differentiable (like a neural network), then:
+    \begin{itemize}
+      \item If for a state $s_t$ we update $\widehat{Q}_{\theta}^\pi(s_t, a_t)$ to be slightly higher, this will \textbf{also} make it so that $\widehat{Q}_{\theta}^\pi(s_{t+1}, a_{t+1})$ is higher, since $s_{t+1}$ tends to be ``nearby'' to $s_t$
+    \end{itemize}
+    \item This leads to instability in the training with runaway $Q$-values
+    \item To solve this, we use \textbf{two} function approximators with parameters $\theta$ and $\theta^-$
+    \item $\theta^-$ is a copy of $\theta$ that we only use to generate the target value $y$, and it only gets synchronized every $n_\theta$ updates.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Replay Buffer}
+  \begin{itemize}
+    \item If we update the parameters $\theta$ at each timestep, then we are only training on the most recent state-action pairs $(s_t, a_t)$
+    \item This can result in \textbf{catastrophic forgetting}, where we perform worse on state-action pairs that we saw a long time ago
+    \item To alleviate this, we can instead train each timestep on a \textbf{batch} of data stored in a \textbf{replay buffer} $\mathcal{D}$
+    \item Assuming a greedy policy, we need to store transitions $\langle s_t, a_t, r_t, s_{t+1} \rangle$
+    \item We can sample batches of transitions randomly from the replay buffer and train the function approximator on them
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Terminal States}
+  \begin{itemize}
+    \item Some states are \textbf{terminal states}, meaning that once you reach state $s_t$, every following state is equal to $S_t$ and the reward is $0$
+    \item In these cases, we can reset the agent to a new starting state and treat this as $s_{t+1}$
+    \item We can augment each transition with a \textbf{done} flag $d_t$ indicating whether or not we entered a terminal state
+    \item We can provide the agent with information about ``doneness'' when calculating the target:
+    $$y = r_t + (1-d_t) \gamma \max_{a_{t+1}} \widehat{Q}_{\theta}^\pi (s_{t+1}, a_{t+1})$$
+    where multiplying by $(1 - d_t)$ helps the agent learn that $G_t = r_t$ (there are no more rewards after this transition)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\epsilon$-Greedy Policies}
+  \begin{itemize}
+    \item When we first start out, our estimate for $Q^\pi$ is probably very wrong
+    \item It does not make sense to follow a greedy policy that chooses the maximal $\widehat{Q}_{\theta}^\pi$
+    \item Instead we can start by selecting actions randomly to get an idea of how good they are
+    \item Over time we can rely more and more on our greedy policy
+    \item We can use an $\epsilon$-greedy policy: Take a random action with some probability $\epsilon$, otherwise follow the policy $\pi$
+    \item One strategy is to linearly anneal $\epsilon$ from some value $\epsilon_i$ to $\epsilon_f$ over a number of iterations $n_\epsilon$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deep $Q$-learning algorithm}
+  \begin{algorithmic}[1]
+    \State $\theta \gets \theta_0$
+    \State $s_t \gets s_0$
+    \State $\epsilon \gets \epsilon_i$
+    \For {$t \gets 0 \dots T$} :
+    \If {$t \mod n_\theta \equiv 0$}:
+      \State $\theta^- \gets \theta$
+    \EndIf
+      \State $a_t \sim \pi(\cdot \vert s_t)$ with $\epsilon$-greedy policy
+      \State $r_t \sim \mathcal{R}(s_t, a_t)$
+      \State $s_{t+1} \sim \mathcal{P}(s_t, a_t, \cdot)$
+      \State $d_t \gets $ terminal state flag
+      \State $\mathcal{D}$.push($\langle s_t, a_t, r_t, s_{t+1}, d_t \rangle$)
+      \State $B \gets $ batch of data from $\mathcal{D}$
+      \For {$s_k, a_k, r_k, s_{k+1}, d_k$ in $B$}:
+        \State $y \gets r_k + \gamma \max_{a_{k+1}} \widehat{Q}_{\theta^-}^\pi (s_{k+1}, a_{k+1})$
+        \State minimize $L(\theta) = \left( \widehat{Q}_{\theta}^\pi(s_k, a_k) - y \right) ^2$ with respect to $\theta$
+      \EndFor
+      \State Anneal $\epsilon$ towards $\epsilon_f$
+    \EndFor
+  \end{algorithmic}
+\end{frame}
+
+\end{document}

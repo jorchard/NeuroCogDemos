@@ -1,0 +1,734 @@
+      <!DOCTYPE html>
+      <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>workflows</title>
+            <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top: 2px dashed rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); border-image: initial; background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; line-height: 1.6; overflow-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); overflow: scroll; }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left: 4px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { background-color: rgb(255, 255, 255); border-top: 1px solid rgb(204, 204, 204); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; background-color: rgba(0, 0, 0, 0.04); border-radius: 3px; }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border-radius: 3px; }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { overflow-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; overflow-wrap: normal; background-color: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: rgb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initial; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.markdown-preview pre.editor-colors { user-select: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover .horizontal-scrollbar { visibility: visible; }
+.markdown-preview .task-list-item input[type="checkbox"] { position: absolute; margin: 0.25em 0px 0px -1.4em; }
+.markdown-preview .task-list-item { list-style-type: none; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+.line-number.bracket-matcher.bracket-matcher {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region {
+  border-radius: 2px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+pre.editor-colors .fold-marker:after {
+  color: #abb2bf;
+}
+.syntax--comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--comment .syntax--markup.syntax--link {
+  color: #5c6370;
+}
+.syntax--entity.syntax--name.syntax--type {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--other.syntax--inherited-class {
+  color: #e5c07b;
+}
+.syntax--keyword {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--control {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--other.syntax--special-method {
+  color: #61afef;
+}
+.syntax--keyword.syntax--other.syntax--unit {
+  color: #d19a66;
+}
+.syntax--storage {
+  color: #c678dd;
+}
+.syntax--storage.syntax--type.syntax--annotation,
+.syntax--storage.syntax--type.syntax--primitive {
+  color: #c678dd;
+}
+.syntax--storage.syntax--modifier.syntax--package,
+.syntax--storage.syntax--modifier.syntax--import {
+  color: #abb2bf;
+}
+.syntax--constant {
+  color: #d19a66;
+}
+.syntax--constant.syntax--variable {
+  color: #d19a66;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--numeric {
+  color: #d19a66;
+}
+.syntax--constant.syntax--other.syntax--color {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--other.syntax--symbol {
+  color: #56b6c2;
+}
+.syntax--variable {
+  color: #e06c75;
+}
+.syntax--variable.syntax--interpolation {
+  color: #be5046;
+}
+.syntax--variable.syntax--parameter {
+  color: #abb2bf;
+}
+.syntax--string {
+  color: #98c379;
+}
+.syntax--string > .syntax--source,
+.syntax--string .syntax--embedded {
+  color: #abb2bf;
+}
+.syntax--string.syntax--regexp {
+  color: #56b6c2;
+}
+.syntax--string.syntax--regexp .syntax--source.syntax--ruby.syntax--embedded {
+  color: #e5c07b;
+}
+.syntax--string.syntax--other.syntax--link {
+  color: #e06c75;
+}
+.syntax--punctuation.syntax--definition.syntax--comment {
+  color: #5c6370;
+}
+.syntax--punctuation.syntax--definition.syntax--method-parameters,
+.syntax--punctuation.syntax--definition.syntax--function-parameters,
+.syntax--punctuation.syntax--definition.syntax--parameters,
+.syntax--punctuation.syntax--definition.syntax--separator,
+.syntax--punctuation.syntax--definition.syntax--seperator,
+.syntax--punctuation.syntax--definition.syntax--array {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--definition.syntax--heading,
+.syntax--punctuation.syntax--definition.syntax--identity {
+  color: #61afef;
+}
+.syntax--punctuation.syntax--definition.syntax--bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.syntax--punctuation.syntax--definition.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--punctuation.syntax--section.syntax--embedded {
+  color: #be5046;
+}
+.syntax--punctuation.syntax--section.syntax--method,
+.syntax--punctuation.syntax--section.syntax--class,
+.syntax--punctuation.syntax--section.syntax--inner-class {
+  color: #abb2bf;
+}
+.syntax--support.syntax--class {
+  color: #e5c07b;
+}
+.syntax--support.syntax--type {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function.syntax--any-method {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--function {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--class,
+.syntax--entity.syntax--name.syntax--type.syntax--class {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--name.syntax--section {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--tag {
+  color: #e06c75;
+}
+.syntax--entity.syntax--other.syntax--attribute-name {
+  color: #d19a66;
+}
+.syntax--entity.syntax--other.syntax--attribute-name.syntax--id {
+  color: #61afef;
+}
+.syntax--meta.syntax--class {
+  color: #e5c07b;
+}
+.syntax--meta.syntax--class.syntax--body {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--method-call,
+.syntax--meta.syntax--method {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--definition.syntax--variable {
+  color: #e06c75;
+}
+.syntax--meta.syntax--link {
+  color: #d19a66;
+}
+.syntax--meta.syntax--require {
+  color: #61afef;
+}
+.syntax--meta.syntax--selector {
+  color: #c678dd;
+}
+.syntax--meta.syntax--separator {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--tag {
+  color: #abb2bf;
+}
+.syntax--underline {
+  text-decoration: underline;
+}
+.syntax--none {
+  color: #abb2bf;
+}
+.syntax--invalid.syntax--deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.syntax--invalid.syntax--illegal {
+  color: white !important;
+  background-color: #e05252 !important;
+}
+.syntax--markup.syntax--bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.syntax--markup.syntax--changed {
+  color: #c678dd;
+}
+.syntax--markup.syntax--deleted {
+  color: #e06c75;
+}
+.syntax--markup.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--markup.syntax--heading {
+  color: #e06c75;
+}
+.syntax--markup.syntax--heading .syntax--punctuation.syntax--definition.syntax--heading {
+  color: #61afef;
+}
+.syntax--markup.syntax--link {
+  color: #56b6c2;
+}
+.syntax--markup.syntax--inserted {
+  color: #98c379;
+}
+.syntax--markup.syntax--quote {
+  color: #d19a66;
+}
+.syntax--markup.syntax--raw {
+  color: #98c379;
+}
+.syntax--source.syntax--c .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cpp .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cs .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--css .syntax--property-name,
+.syntax--source.syntax--css .syntax--property-value {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--property-name.syntax--support,
+.syntax--source.syntax--css .syntax--property-value.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--source.syntax--embedded.syntax--source {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--constant.syntax--language,
+.syntax--source.syntax--elixir .syntax--constant.syntax--numeric,
+.syntax--source.syntax--elixir .syntax--constant.syntax--definition {
+  color: #61afef;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--definition,
+.syntax--source.syntax--elixir .syntax--variable.syntax--anonymous {
+  color: #c678dd;
+}
+.syntax--source.syntax--elixir .syntax--parameter.syntax--variable.syntax--function {
+  color: #d19a66;
+  font-style: italic;
+}
+.syntax--source.syntax--elixir .syntax--quoted {
+  color: #98c379;
+}
+.syntax--source.syntax--elixir .syntax--keyword.syntax--special-method,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--section,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--source.syntax--empty {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--readwrite.syntax--module .syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--regexp.syntax--section,
+.syntax--source.syntax--elixir .syntax--regexp.syntax--string {
+  color: #be5046;
+}
+.syntax--source.syntax--elixir .syntax--separator,
+.syntax--source.syntax--elixir .syntax--keyword.syntax--operator {
+  color: #d19a66;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--constant {
+  color: #e5c07b;
+}
+.syntax--source.syntax--elixir .syntax--array,
+.syntax--source.syntax--elixir .syntax--scope,
+.syntax--source.syntax--elixir .syntax--section {
+  color: #828997;
+}
+.syntax--source.syntax--gfm .syntax--markup {
+  -webkit-font-smoothing: auto;
+}
+.syntax--source.syntax--gfm .syntax--link .syntax--entity {
+  color: #61afef;
+}
+.syntax--source.syntax--go .syntax--storage.syntax--type.syntax--string {
+  color: #c678dd;
+}
+.syntax--source.syntax--ini .syntax--keyword.syntax--other.syntax--definition.syntax--ini {
+  color: #e06c75;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--modifier.syntax--import {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--type {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--keyword.syntax--operator.syntax--instanceof {
+  color: #c678dd;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair {
+  color: #e06c75;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair > .syntax--punctuation {
+  color: #abb2bf;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--delete,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--in,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--of,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--instanceof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--new,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--typeof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--void {
+  color: #c678dd;
+}
+.syntax--source.syntax--ts .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--flow .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation.syntax--string {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--constant.syntax--language.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--constant.syntax--language.syntax--json {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--interpolation {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation.syntax--begin,
+.syntax--ng.syntax--interpolation.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--function {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation .syntax--function.syntax--begin,
+.syntax--ng.syntax--interpolation .syntax--function.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--bool {
+  color: #d19a66;
+}
+.syntax--ng.syntax--interpolation .syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--pipe,
+.syntax--ng.syntax--operator {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--tag {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--attribute-name {
+  color: #e5c07b;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string {
+  color: #c678dd;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--begin,
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--end {
+  color: #abb2bf;
+}
+.syntax--source.syntax--ruby .syntax--constant.syntax--other.syntax--symbol > .syntax--punctuation {
+  color: inherit;
+}
+.syntax--source.syntax--php .syntax--class.syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--source.syntax--python .syntax--keyword.syntax--operator.syntax--logical.syntax--python {
+  color: #c678dd;
+}
+.syntax--source.syntax--python .syntax--variable.syntax--parameter {
+  color: #d19a66;
+}
+</style>
+        </head>
+        <body class='markdown-preview' data-use-github-style><hr>
+<h1 id="working-with-git-on-a-local-repository">Working with git on a local repository</h1>
+<ul>
+<li>You want to use git for version control, but you are using it just for yourself for your own project. You are not uploading anything to a remote repository like GitHub.</li>
+<li>If this is the first time you are setting up the repository, then create a new git repository in the current directory:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> init</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">touch</span> .gitignore</span></div></pre>
+</li>
+<li>edit <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">.gitignore</code> to include glob-style paths of files and folders you want ignored (such as <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">*.pyc</code> or <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">.DS_Store</code>)</li>
+<li>If the repository already exists and you are going to be doing work on it today, checkout a new branch and switch to it if necessary:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout {branchname} <span class="syntax--comment syntax--block"># the branch exists</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout <span class="syntax--entity syntax--other syntax--attribute-name">-b</span> {branchname} <span class="syntax--comment syntax--block"># the branch does not yet exist</span></span></div></pre>
+</li>
+<li>If you don't remember what branches exist or what they're called, use<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> branch</span></div></pre>
+to list them all</li>
+<li>Do some work (add/delete files, modify files, etc)</li>
+<li>When you want to see the difference between the <strong>working directory</strong> and the <strong>staging area</strong>, use<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> diff</span></div></pre>
+</li>
+<li>When you've made enough changes and want git to track a 'snapshot' of the changes, add them to the <strong>staging area</strong><pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> add file1 file2 file3 <span class="syntax--comment syntax--block"># add specific files</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> add <span class="syntax--entity syntax--other syntax--attribute-name">-A</span> <span class="syntax--comment syntax--block"># add everything ("All")</span></span></div></pre>
+</li>
+<li>If the current staging area represents a 'version' of the code that you want to save to the git history, make a commit<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> commit <span class="syntax--entity syntax--other syntax--attribute-name">-m</span> <span class="syntax--string">"{commit message}"</span></span></div></pre>
+</li>
+<li>If at any time you want to see what files are in the <strong>working directory</strong> but are untracked (not in the <strong>staging area</strong>), and see which files are in the <strong>staging area</strong>, use<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> status</span></div></pre>
+</li>
+<li>If throughout the day you have made a few commits and want to see the history of those commits, use<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> log</span></div></pre>
+to see all commits on the commit history visible from the current branch.</li>
+<li>When you are done with your changes and are happy, merge the changes from the current branch into the master branch and delete the current branch.<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout master <span class="syntax--comment syntax--block"># switch to master branch</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge {branchname} <span class="syntax--comment syntax--block"># merge changes into master</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> branch <span class="syntax--entity syntax--other syntax--attribute-name">-d</span> {branchname} <span class="syntax--comment syntax--block"># delete the new branch</span></span></div></pre>
+</li>
+<li>Overall:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout <span class="syntax--entity syntax--other syntax--attribute-name">-b</span> {branchname}</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--block"># do work</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> add <span class="syntax--entity syntax--other syntax--attribute-name">-A</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> commit <span class="syntax--entity syntax--other syntax--attribute-name">-m</span> <span class="syntax--string">"{message}"</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--block"># repeat as many times as needed until branch is 'done'</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout master</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge {branchname} <span class="syntax--comment syntax--block"># merge changes into master</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> branch <span class="syntax--entity syntax--other syntax--attribute-name">-d</span> {branchname} <span class="syntax--comment syntax--block"># delete the new branch</span></span></div></pre>
+</li>
+<li>Getting in the habit of doing this even for local projects, presentations, etc. will help you get into the habit of using git. git is lightweight and fast so there's really no reason not to use it! And remember the git mantra:<blockquote>
+<p>Branch early and branch often.</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="working-with-git-on-a-remote-repository">Working with git on a remote repository</h1>
+<ul>
+<li><p><em>disclaimer: you may have to log into GitHub at some point during this process</em>.</p>
+</li>
+<li><p>You want to use git for version control, and your code is also hosted somewhere on a remote repository. You are the sole contributor to the remote repository.</p>
+</li>
+<li><p><strong>While you can use remote repositories this way for collaboration, the workflow becomes more complex to ensure branches are synchronized. For collaboration I suggest using the fork/pull workflow described below through GitHub.</strong></p>
+</li>
+<li><p>If you are starting from scratch, create an empty repository on GitHub. Navigate to where you want the directory for that repository to live on your local machine and clone the URL:</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function"><span class="syntax--support syntax--function">cd</span></span> {path/to/repo}</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> clone https://github.com/{username}/{reponame}.git</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function"><span class="syntax--support syntax--function">cd</span></span> {reponame}</span></div></pre>
+</li>
+<li><p>this process automatically makes <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">{path/to/repo/reponame}</code> a git repository, so you can use git commands here.</p>
+</li>
+<li><p>it also automatically sets up an initial commit so the commit history has one node on it.</p>
+</li>
+<li><p>it also adds an alias to the remote repository, as if you had done</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> remote add origin https://github.com/{username}/{reponame}.git</span></div></pre>
+<p>where the syntax</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> remote add {alias} {https://github.com/{username}/{reponame}.git}</span></div></pre>
+<p>just lets you use <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">alias</code> in place of a url when using <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git remote</code> commands (below).</p>
+</li>
+<li><p>if you are NOT starting from scratch and have an existing git repository on your local machine and have decided you want to start hosting it on a remote repository, then create an empty github repo. Do not initialize it with a README or license.</p>
+</li>
+<li><p>then do</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> remote add origin https://github.com/{username}/{reponame}.git</span></div></pre>
+<p>this sets the local git repository to track the remote repository called 'origin'.</p>
+</li>
+<li><p>from here you should be able to do</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> fetch <span class="syntax--entity syntax--other syntax--attribute-name">-v</span></span></div></pre>
+<p>to see the remote repository you just added.</p>
+</li>
+<li><p>once you have done this, you can just follow the guide to working on a local git repo. This work is just to make sure that your work starts from the same point as the remote repo.</p>
+</li>
+<li><p>when you are done making changes in your local repo and have made commits, etc. (see guide on using git locally), you can push your changes to the remote repository:</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> push origin {branchname}</span></div></pre>
+</li>
+<li><p>this pushes to the repo <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">origin</code>, which we made as an alias earlier for <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">https://github.com/{username}/{reponame}.git</code>. It pushes the current series of commits, if possible, to the branch <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">{branchname}</code>. If you are following the guide for local development, this could just be <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git push origin master</code> if you are working from the master branch. It is good practice to push to a branch of the same name on the remote repository so that the remote commit histories and remote branches match the local ones. If you decide to push to a non-master branch, you can actually perform a <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git merge</code> on GitHub on the remote repository.</p>
+</li>
+<li><p>there are more steps you should follow if you are using a remote repository for collaboration. I haven't covered those here because that is not the collaboration use case we will be using in this lab. There are plenty of resources for further reading if you're interested (<a href="https://www.atlassian.com/git/tutorials/syncing">https://www.atlassian.com/git/tutorials/syncing</a>).</p>
+</li>
+<li><p>overall:</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--block"># do your local git stuff</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> push origin master</span></div></pre>
+</li>
+</ul>
+<hr>
+<h1 id="forkpull-and-the-github-collaboration-model">Fork/Pull and the GitHub Collaboration Model</h1>
+<ul>
+<li>This is the model of git and version control we will use in scenarios where multiple people are collaborating on code.</li>
+</ul>
+<h2 id="you-are-the-owner-of-the-remote-repository">You are the owner of the remote repository</h2>
+<ul>
+<li>You do not need for fork and clone a repo. We assume that you can pull from and push directly to the remote repository being collaborated on.</li>
+<li>If you haven't already, clone the repo and <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">cd</code> into it.</li>
+<li>Before beginning your work, make sure that your local master branch is up to date:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> fetch origin</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout master</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge remotes/origin/master</span></div></pre>
+</li>
+<li>from here, checkout and/or create a new branch to do your work. When you are done, repeat:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> fetch origin</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout master</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge remotes/origin/master</span></div></pre>
+</li>
+<li>then, if you want, you can commit your changes from your branch to the master branch:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge {branchname}</span></div></pre>
+</li>
+<li>if you have approved changes to the master branch since you began working but did not update your local repository to match, then your local master branch will not have the same history as the remote repository, which will contain additional commits. You need to merge these changes into your master branch before pushing to the remote repository.</li>
+<li>If this causes merge conflicts (you have made changes to the master branch in the meantime), resolve them before continuing. Once they are all resolved:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> push origin {branchname}</span></div></pre>
+</li>
+<li>if you are the owner and you are comfortable with it, you can push directly to <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">master</code>, or you can push to another branch and merge them later on GitHub.</li>
+</ul>
+<h2 id="you-are-not-the-owner-of-the-remote-repository">You are <strong>not</strong> the owner of the remote repository</h2>
+<ul>
+<li>There is a public github repository and you want to propose changes to that repo.</li>
+<li>Begin by forking the repository (button near the top right). This makes a copy of their repository onto your github account. Now you own that copy of the repository and can make changes to it as you like, just like the section on remote repositories described above!</li>
+<li>Add a second remote repository, called <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">upstream</code>, to serve as the 'source' repository. This is kind of like <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">origin</code>, except that we can push/pull/fetch from <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">origin</code>, but cannot push to <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">upstream</code> (since we don't own it).<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> remote add upstream https://github.com/{original-username}/{reponame}.git</span></div></pre>
+this URL should point to the <strong>original</strong> remote repository, <em>not</em> your <strong>forked</strong> copy.</li>
+<li>The next steps are very similar to if you owned the original repository:</li>
+<li>Before beginning your work, make sure that your local master branch is up to date:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> fetch upstream</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout master</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge remotes/upstream/master</span></div></pre>
+</li>
+<li>from here, checkout and/or create a new branch to do your work. When you are done, repeat:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> fetch upstream</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> checkout master</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge remotes/upstream/master</span></div></pre>
+</li>
+<li>then, if you want, you can commit your changes from your branch to the master branch:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> merge {branchname}</span></div></pre>
+</li>
+<li>all we have really done is made sure that our master branch is always in sync with the <strong>original</strong> repository's master branch, since changes may have been made since we have last updated it. By keeping it in sync, it will prevent merge conflicts, so the only changes proposed are the ones that we have added.</li>
+<li>once we are ready, we can push to <strong>our</strong> remote repository:<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> push origin {branchname}</span></div></pre>
+</li>
+<li>from here, we can go to GitHub and navigate to the branch that we pushed to. We can then create a new pull request to the original owner of the repository, who can decide to merge our changes.</li>
+<li>If we need to make fixes to our proposed changes before they are accepted, all we have to do is push those changes to the same branch - GitHub's pull requets operate on <strong>branches</strong>, so any commits added to a remote branch's history will be reflected in the content of the pull request.</li>
+</ul>
+<hr>
+<h1 id="tips-and-tricks">Tips and tricks</h1>
+<ul>
+<li><p>Try to become familiar with navigating your git history and switching branches using this online visualization tool (30-45 mins):
+<a href="https://learngitbranching.js.org">https://learngitbranching.js.org</a></p>
+</li>
+<li><p>Read the URLs posted in this guide!</p>
+</li>
+<li><p>If at any point during working you decide that you want to switch to another branch but do not want to lose your changes <strong>and</strong> don't want to save your current changes using a commit, use</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> stash</span></div></pre>
+</li>
+<li><p>When you are ready to go back to that version of things, just call</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> stash list</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> stash pop {stashname}</span></div></pre>
+<p>where <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git stash list</code> will list a bunch of stashes like <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">stash@{0}</code> which you can use to replace <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">{stashname}</code> above.</p>
+</li>
+<li><p>If at any point during working you decide you want to revert back to a previous version of things, there are many ways to do this. The easiest is to use</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> reset</span></div></pre>
+</li>
+<li><p>this comes with different options, but I <strong>really</strong> suggest you all read this short article which gives a great overview of most of how git works with the intention of explaining <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git reset</code>. <a href="https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified">https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified</a></p>
+</li>
+<li><p>The default option (<code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git reset --mixed</code>) basically undoes your last <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git commit</code> and <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git add</code> operations. It leaves the files in the working directory alone.</p>
+</li>
+<li><p>You can 'unstage' a single file to the version from a previous commit by doing</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> reset {filename}</span></div></pre>
+</li>
+<li><p>This is what <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git status</code> suggests you do and you can kind of thing of it as being the opposite of <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">git add</code>.</p>
+</li>
+<li><p>You can completely remove a file from the staging area using</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> rm <span class="syntax--entity syntax--other syntax--attribute-name">--cached</span> {filename}</span></div></pre>
+</li>
+<li><p>Append the following to your <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">~/.bash_profile</code> to see the current branch in your terminal prompt:</p>
+<pre class="editor-colors lang-sh"><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--block"># Git branch in prompt.</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">parse_git_branch</span>() {</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--entity syntax--name syntax--function">git</span> branch <span class="syntax--constant syntax--numeric">2</span><span class="syntax--keyword syntax--operator">&gt;</span> /dev/null <span class="syntax--keyword syntax--operator">|</span> <span class="syntax--entity syntax--name syntax--function">sed</span> <span class="syntax--entity syntax--other syntax--attribute-name">-e</span> <span class="syntax--string">'/^[^*]/d'</span> <span class="syntax--entity syntax--other syntax--attribute-name">-e</span> <span class="syntax--string">'s/* \(.*\)/ (\1)/'</span></span></div><div class="line"><span class="syntax--source syntax--shell">}</span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--keyword syntax--control">export</span> <span class="syntax--variable syntax--other syntax--member">PS1</span>=<span class="syntax--string">"\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] <span class="syntax--punctuation syntax--section syntax--embedded">$</span> "</span></span></div></pre>
+</li>
+</ul></body>
+      </html>
