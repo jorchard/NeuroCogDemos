@@ -37,3 +37,11 @@ notebook. You can always repeat steps 6 and 7 to continue where you left off. Am
 
 ## GPU Monitoring
 Type `nvidia-smi` to see the GPU load.
+
+## `jupyterhub` on koios
+
+This is a convenient way to use `koios` without having to mess around with `ssh`. The machine is set up with `jupyterhub`. Just point your browser to
+```
+kiois.cs.uwaterloo.ca
+```
+To load your code onto it, we suggest using `git`. Open up a terminal, and `git`-away!
