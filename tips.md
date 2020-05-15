@@ -1,7 +1,6 @@
 # Tips and Tricks
 
-- **Equations in Slack:** Do this simple process outlined [here](https://github.com/fsavje/math-with-slack) \[Edit: It doesn't seem to work now.\]
-As an alternative, you can install the [LaTeX app](https://www.latexforslack.com/) in Slack.
+- **Advice for Technical Writing:** [This document](https://www.overleaf.com/read/zkwcphwjnbhb) illustrates the most common problems I see when I review papers and theses.
 - **Dropbox on linux:** Here are some helpful commands.
 ```
 dropbox start
