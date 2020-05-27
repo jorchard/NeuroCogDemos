@@ -110,7 +110,10 @@ git push origin {branchname}
 # do your local git stuff
 git push origin master
 ```
-
+- to save yourself from having to retype your login and password, run the following line of code. After the next time you enter your credentials, it will remember them.
+```sh
+git config --global credential.helper store
+```
 ---
 
 # Fork/Pull and the GitHub Collaboration Model
