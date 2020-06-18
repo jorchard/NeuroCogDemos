@@ -15,7 +15,7 @@ If you have a special theme from github e.g. minimal-mistakes theme
 3. You can Remove the [Unnecessary files and folders](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#remove-the-unnecessary) as follows:
 	```
 	.editorconfig
-     	.gitattributes
+	.gitattributes
      	.github
      	/docs
      	/test
@@ -44,4 +44,4 @@ If you have a special theme from github e.g. minimal-mistakes theme
     - bundle exec jekyll serve
     	
 10. In your brwoser insert the [link](http://127.0.0.1:4000)
-11. After each changes in _config.yml_ 
+11. After changes in "_config.yml" run line #9_ 
