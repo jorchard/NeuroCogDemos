@@ -2,12 +2,14 @@ Steb-by-Step quick guide to create a webpage on github and your local machine
 
 0. First install [ruby](https://rubyinstaller.org/)
 1. Install Jekyll on the local machine
-    a. Open command prompt (or terminal) and run the following commands:
-        - gem install bundler jekyll
-        - jekyll new my-awesome-site
-        - cd my-awesome-site
-        - bundle exec jekyll serve
-    b. # => Now browse [link](http://localhost:4000)
+    *a. Open command prompt (or terminal) and run the following commands:
+    	'''
+        gem install bundler jekyll
+        jekyll new my-awesome-site
+        cd my-awesome-site
+        bundle exec jekyll serve
+	'''
+    *b. # => Now browse [link](http://localhost:4000)
 
 If you have a special theme from github e.g. minimal-mistakes theme
 1. Copy the [clone link](https://github.com/mmistakes/minimal-mistakes)
