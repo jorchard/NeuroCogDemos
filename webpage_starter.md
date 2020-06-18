@@ -13,7 +13,8 @@ If you have a special theme from github e.g. minimal-mistakes theme
 1. Copy the clone [link](https://github.com/mmistakes/minimal-mistakes)
 2. Git clone the provided link on your local machine.
 3. You can Remove the [Unnecessary files and folders](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#remove-the-unnecessary) as follows:
-     	.editorconfig
+	```
+	.editorconfig
      	.gitattributes
      	.github
      	/docs
