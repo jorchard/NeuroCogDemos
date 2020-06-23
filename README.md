@@ -13,4 +13,4 @@ Here is a list of demonstrations and tutorials.
 
 - [Webpage starter](webpage_starter.md): Initial steps to build a personal website. open the file in sublime or other similar editors.
 
-- [Policy Gradient](https://avandekleut.github.io/ppo)
+- [Policy Gradient](https://avandekleut.github.io/ppo): Alex taught us about policy gradient, and REINFORCE.
