@@ -14,3 +14,5 @@ Here is a list of demonstrations and tutorials.
 - [Webpage starter](webpage_starter.md): Initial steps to build a personal website. open the file in sublime or other similar editors.
 
 - [Policy Gradient](https://avandekleut.github.io/reinforce/): Alex taught us about policy gradient, and REINFORCE.
+
+- [Library](library.md) includes usefull links to materials from background readings to implementations. 
