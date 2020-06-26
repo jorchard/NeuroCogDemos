@@ -1,0 +1,5 @@
+- [Deep Learning - Goodfellow](https://www.deeplearningbook.org/)
+- [OpenAI Deep RL](https://spinningup.openai.com/en/latest/)
+- [Neural Network and Deep Learning](http://neuralnetworksanddeeplearning.com/)
+- [Machine Learning Glossary](https://ml-cheatsheet.readthedocs.io/en/latest/index.html)
+- [Python Machine Learning](https://www.python-course.eu/machine_learning.php)
