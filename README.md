@@ -15,4 +15,4 @@ Here is a list of demonstrations and tutorials.
 
 - [Policy Gradient](https://avandekleut.github.io/reinforce/): Alex taught us about policy gradient, and REINFORCE.
 
-- [Library](library.md) includes usefull links to materials from background readings to implementations. 
+- [Library](Library.md) includes usefull links to materials from background readings to implementations. 
