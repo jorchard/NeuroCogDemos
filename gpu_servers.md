@@ -2,7 +2,7 @@
 
 We have a few GPU machines that we can use.
 1. `honeydew.cs.uwaterloo.ca` has an NVIDIA Titan XP with 12GB RAM. We gratefully acknowledge the support of NVIDIA Corporation with the donation of the Titan Xp GPU.
-1. `honeydew.cs.uwaterloo.ca` has an NVIDIA Titan XP with 12GB RAM. This machine was donated by Morgan McGuire of NVIDIA.
+1. `beaker.cs.uwaterloo.ca` has an NVIDIA Titan XP with 12GB RAM. This machine was donated by Morgan McGuire of NVIDIA.
 3. `koios.cs.uwaterloo.ca` has 8 NVIDIA Titan XPs, each with 12GB RAM. This machine belongs to Tyler, but he invites us to use it. Thanks Tyler!
 
 
