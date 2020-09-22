@@ -8,4 +8,4 @@ dropbox status
 ```
 - **Matrix Cookbook:** Check out [this pdf](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf). It describes a number of common matrix operations.
 
-- **Usefull Cheat Sheets** for NN, ML, etc.[includes 13 pdf](https://vault.cs.uwaterloo.ca/s/Gcspnoo4dnDZRwP).
+- **Usefull Cheat Sheets** for NN, ML, etc. [library](https://vault.cs.uwaterloo.ca/s/Gcspnoo4dnDZRwP) includes 13 pdf files.
