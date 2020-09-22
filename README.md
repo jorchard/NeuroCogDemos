@@ -17,4 +17,4 @@ Here is a list of demonstrations and tutorials.
 
 - [Library](Library.md) includes usefull links to materials from background readings to implementations. 
 
-- [VIP cheatsheet for NN, ML]
+
