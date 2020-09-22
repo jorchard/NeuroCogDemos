@@ -6,4 +6,4 @@
 dropbox start
 dropbox status
 ```
-- **Matrix Cookbook:** Check out [this pdf](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf){:target="_blank"}. It describes a number of common matrix .operations
+- **Matrix Cookbook:** Check out [this pdf](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf). It describes a number of common matrix .operations
