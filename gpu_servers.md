@@ -13,6 +13,7 @@ We have a few GPU machines that we can use.
 ssh honeydew.cs.uwaterloo.ca
 ```
 If you are doing this from off-campus, you might have to use a [VPN](https://uwaterloo.ca/information-systems-technology/services/virtual-private-network-vpn/about-virtual-private-network-vpn).
+
 2. Instantiate  the machine-learning environment (if you want to use `pyTorch`, etc)
 ```
 source activate ml
