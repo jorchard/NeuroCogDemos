@@ -6,6 +6,18 @@ We have a few GPU machines that we can use.
 3. `koios.cs.uwaterloo.ca` has 8 NVIDIA Titan XPs, each with 12GB RAM. This machine belongs to Tyler, but he invites us to use it. Thanks Tyler!
 
 
+## `jupyterhub` on koios
+
+This is a convenient way to use `koios` without having to mess around with `ssh`. The machine is set up with `jupyterhub`. To request an account, go to
+```
+koios.cs.uwaterloo.ca/hub/signup
+```
+An admin will then have to go to `koios.cs.uwaterloo.ca/hub/authorize` to authorize the account. After that, just point your browser to
+```
+kiois.cs.uwaterloo.ca
+```
+To load your code onto it, we suggest using `git`. Open up a terminal, and `git`-away!
+
 ## Running jupyter notebook Remotely
 
 1. Login to remote machine
@@ -38,11 +50,3 @@ notebook. You can always repeat steps 6 and 7 to continue where you left off. Am
 
 ## GPU Monitoring
 Type `nvidia-smi` to see the GPU load.
-
-## `jupyterhub` on koios
-
-This is a convenient way to use `koios` without having to mess around with `ssh`. The machine is set up with `jupyterhub`. Just point your browser to
-```
-kiois.cs.uwaterloo.ca
-```
-To load your code onto it, we suggest using `git`. Open up a terminal, and `git`-away!
