@@ -14,7 +14,7 @@ koios.cs.uwaterloo.ca/hub/signup
 ```
 An admin will then have to go to `koios.cs.uwaterloo.ca/hub/authorize` to authorize the account. After that, just point your browser to
 ```
-kiois.cs.uwaterloo.ca
+koios.cs.uwaterloo.ca
 ```
 To load your code onto it, we suggest using `git`. Open up a terminal, and `git`-away!
 
