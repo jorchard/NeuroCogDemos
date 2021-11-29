@@ -30,11 +30,11 @@ If you are doing this from off-campus, you might have to use a [VPN](https://uwa
 ```
 source activate ml
 ```
-3. On remote machine, start the notebook on a specified port, and run it in the background
+3. On remote machine, start the notebook on a specified port, and run it in the background. The command `nohup` allows the process to continue even if you close the terminal window or logout of the server. Note that the output will then be directed to the file `nohup.out`.
 ```
 nohup jupyter notebook --no-browser --port=8885 &
 ```
-4. Make note of the URL that the notebook is running on.
+4. Make note of the URL that the notebook is running on. You might have to look in the file `nohup.out` for this. It'll have a really long random string of characters.
 5. Log out of remote machine.
 6. Create an `ssh` tunnel to the chosen port
 ```
