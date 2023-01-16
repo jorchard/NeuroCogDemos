@@ -18,18 +18,21 @@ koios.cs.uwaterloo.ca
 ```
 To load your code onto it, we suggest using `git`. Open up a terminal, and `git`-away!
 
-
+___
 #### Public vs. Private repository
-Note that you can `git clone "<git repo url>"` in the terminal easily. However, this work only if your repo is public.
+You can `git clone "<git repo url>"` in the terminal easily. However, this works well only if your repo is public.
 For the private repo, you need to grant a permission.
 ```bahs
 cd .ssh
 ssh-keygen
-# then just enter in respose to the comments
 ```
-Then open id_rsa.pub and copy the content of the file using vim, for example.
-On your cloud server, (github, gitlab, ...) , on your `profile > settings`, on the left side-bar select `SSH and GPG keys` then `new ssh key` and paste the copied key from the clipboard. for example, `[https://github.com/settings/keys](https://github.com/settings/ssh/new)`, and obviously write a good description, to recall it later.
-
+- For the simplicity, just enter in response to the comments.
+- Then open `id_rsa.pub` and copy the content of the file using `vim`, for example.
+- Then, on your cloud server, (github, gitlab, ...) , on your `profile > settings`, 
+- On the left, side-bar select `SSH and GPG keys` then `new ssh key` and paste the copied key from the clipboard.
+- For example, `[https://github.com/settings/keys](https://github.com/settings/ssh/new)`, 
+- Obviously a good description helps to recall `SSH->Device` later.
+___
 
 ## Running jupyter notebook Remotely
 
