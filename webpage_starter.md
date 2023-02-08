@@ -1,6 +1,6 @@
 Step-by-Step quick guide to create a webpage on github and your local machine
 
-0. First install [ruby](https://rubyinstaller.org/)
+0. First install [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
 1. To install Jekyll on the local machine.
     - Open command prompt (or terminal) and run the following commands:
 	```
