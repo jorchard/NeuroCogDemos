@@ -3,6 +3,7 @@
 Here is a list of demonstrations and tutorials.
 
 - [Tips and Tricks](tips.md): Just a few simple and helpful tips.
+- [VIP CheatSheets](https://stanford.edu/~shervine/) contain several pfd files covering AI/ML/DL/ODE/Probabilitiy and Statistics.
 - [jupyter lab](jupyter_lab.md): An alternative to jupyter notebook.
 - [GPU Servers](gpu_servers.md): Here is how you can run Python on one of our GPU machines.
 - `/q-learning/` contains a PyTorch implementation of Q-learning with vectorized `gym` environments. It also contains a presentation summarizing the mathematics behind deep Q-learning. See Mnih et al (2015). Author: [Alexander Van de Kleut](https://avandekleut.github.io/).
